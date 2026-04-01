@@ -508,14 +508,14 @@
             background-size: 32px 32px;
         }
 
-        .occasion-icon {
+        .occasion-icon { font-size: 36px !important;
             position: absolute;
             top: 20px; right: 20px;
             font-size: 28px;
             opacity: 0.35;
             transition: opacity var(--transition), transform var(--transition);
         }
-        .occasion-card:hover .occasion-icon {
+        .occasion-card:hover .occasion-icon { font-size: 36px !important;
             opacity: 0.6;
             transform: scale(1.2) rotate(5deg);
         }
