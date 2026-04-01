@@ -1217,27 +1217,16 @@
 
         <div class="occasions-grid">
 
-            @php
-            $defaultOccasions = [
-                ['slug' => 'cumpleanos',   'class' => 'occ-cumpleanos',   'icon' => '🎂', 'title' => 'Cumpleaños',   'desc' => 'Un regalo personalizado con inicial en chocolate — el regalo que nadie olvida.'],
-                ['slug' => 'san-valentin', 'class' => 'occ-san-valentin', 'icon' => '💝', 'title' => 'San Valentín', 'desc' => 'Sorprende con chocolate blanco, rosa y dorado para enamorarte.'],
-                ['slug' => 'quinceanera', 'class' => 'occ-quinceanera',  'icon' => '👑', 'title' => 'Quinceañera',  'desc' => 'Un detalle con magia, elegancia y dulzura para el día más especial de su vida.'],
-                ['slug' => 'baby-shower',  'class' => 'occ-baby-shower',  'icon' => '🍼', 'title' => 'Baby Shower',  'desc' => 'Dulces personalizados para celebrar la llegada del nuevo bebé.'],
-                ['slug' => 'matrimonios',  'class' => 'occ-matrimonios',  'icon' => '💍', 'title' => 'Matrimonios',  'desc' => 'Recordatorios de mesa y bonbones perfectos para el gran día.'],
-                ['slug' => 'dia-mujer',    'class' => 'occ-dia-mujer',    'icon' => '🌸', 'title' => 'Día de la Mujer', 'desc' => 'Elegancia y sabor para comenzar el 8 de marzo con amor.'],
-            ];
-            $occasions = $occasions ?? $defaultOccasions;
-            @endphp
-
-            @foreach($occasions as $i => $occ)
-            <a href="{{ route('shop.catalog') . '?ocasion=' . $occ['slug'] }}"
-               class="occasion-card {{ $occ['class'] }} reveal reveal-delay-{{ ($i % 3) + 1 }}">
-                <div class="occasion-bg"></div>
+            @foreach($ocasiones as $i => $oc)
+            <a href="{{ route('shop.ocasion', $oc->slug) }}"
+               class="occasion-card reveal reveal-delay-{{ ($i % 3) + 1 }}"
+               style="--oc-color: {{ $oc->color ?? '#3d1c02' }}">
+                <div class="occasion-bg" style="background: linear-gradient(135deg, {{ $oc->color ?? '#3d1c02' }} 0%, color-mix(in srgb, {{ $oc->color ?? '#3d1c02' }} 70%, #000) 100%)"></div>
                 <div class="occasion-pattern"></div>
-                <span class="occasion-icon">{{ $occ['icon'] }}</span>
+                <span class="occasion-icon">{{ $oc->icono }}</span>
                 <div class="occasion-content">
-                    <h3 class="occasion-title">{{ $occ['title'] }}</h3>
-                    <p class="occasion-desc">{{ $occ['desc'] }}</p>
+                    <h3 class="occasion-title">{{ $oc->nom }}</h3>
+                    <p class="occasion-desc">{{ $oc->descripcion }}</p>
                     <span class="occasion-link">
                         Ver ideas
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>

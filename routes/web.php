@@ -16,6 +16,8 @@ use App\Http\Controllers\Shop\OrderController as ShopOrderController;
 Route::get('/', [ShopController::class, 'home'])->name('shop.home');
 Route::get('/catalogo', [ShopController::class, 'catalog'])->name('shop.catalog');
 Route::get('/catalogo/{slug}', [ShopController::class, 'category'])->name('shop.category');
+Route::get('/ocasion/{slug}', [ShopController::class, 'ocasion'])->name('shop.ocasion');
+Route::get('/ocasion/{slug}', [ShopController::class, 'ocasion'])->name('shop.ocasion');
 Route::get('/producto/{slug}', [ShopController::class, 'product'])->name('shop.product');
 
 Route::post('/carrito/agregar', [CartController::class, 'add'])->name('cart.add');

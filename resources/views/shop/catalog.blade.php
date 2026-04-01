@@ -65,10 +65,28 @@
 <div class="catalog-wrap">
 
     <aside class="catalog-sidebar">
-        <span class="sidebar-label">Categorías</span>
+
+        <span class="sidebar-label">Ocasiones</span>
         <ul class="sidebar-list">
             <li>
-                <a href="{{ route('shop.catalog') }}" class="{{ !isset($category) ? 'active' : '' }}">
+                <a href="{{ route('shop.catalog') }}" class="{{ !isset($ocasion) && !isset($category) ? 'active' : '' }}">
+                    <span>Todas las ocasiones</span>
+                </a>
+            </li>
+            @foreach($ocasiones as $oc)
+            <li>
+                <a href="{{ route('shop.ocasion', $oc->slug) }}" class="{{ isset($ocasion) && $ocasion->id === $oc->id ? 'active' : '' }}">
+                    <span>{{ $oc->icono }} {{ $oc->nom }}</span>
+                    <span class="sidebar-count">{{ $oc->products_count ?? '' }}</span>
+                </a>
+            </li>
+            @endforeach
+        </ul>
+
+        <span class="sidebar-label" style="margin-top:20px;">Categorías</span>
+        <ul class="sidebar-list">
+            <li>
+                <a href="{{ route('shop.catalog') }}" class="{{ !isset($category) && !isset($ocasion) ? 'active' : '' }}">
                     <span>Todos los productos</span>
                     <span class="sidebar-count">{{ \App\Models\Product::where('actif',1)->count() }}</span>
                 </a>
@@ -82,6 +100,7 @@
             </li>
             @endforeach
         </ul>
+
     </aside>
 
     <div>
