@@ -12,12 +12,16 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\Shop\CartController;
 use App\Http\Controllers\Shop\OrderController as ShopOrderController;
+use App\Http\Controllers\Shop\ContactController;
 
 Route::get('/', [ShopController::class, 'home'])->name('shop.home');
 Route::get('/catalogo', [ShopController::class, 'catalog'])->name('shop.catalog');
 Route::get('/catalogo/{slug}', [ShopController::class, 'category'])->name('shop.category');
 Route::get('/ocasion/{slug}', [ShopController::class, 'ocasion'])->name('shop.ocasion');
 Route::get('/ocasion/{slug}', [ShopController::class, 'ocasion'])->name('shop.ocasion');
+Route::get('/contacto', [ContactController::class, 'show'])->name('shop.contact');
+Route::post('/contacto', [ContactController::class, 'send'])->middleware('throttle:3,10')->name('shop.contact.send');
+Route::get('/nosotras', [ShopController::class, 'nosotras'])->name('shop.nosotras');
 Route::get('/producto/{slug}', [ShopController::class, 'product'])->name('shop.product');
 
 Route::post('/carrito/agregar', [CartController::class, 'add'])->name('cart.add');

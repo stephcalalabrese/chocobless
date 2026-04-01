@@ -1081,8 +1081,8 @@
             <nav class="main-nav">
                 <a href="#ocasiones">Ocasiones</a>
                 <a href="{{ route('shop.catalog') }}">Catálogo</a>
-                <a href="{{ '#nosotras' }}">Nosotras</a>
-                <a href="{{ '#contacto' }}">Contacto</a>
+                <a href="{{ route('shop.nosotras') }}">Nosotras</a>
+                <a href="{{ route('shop.contact') }}">Contacto</a>
             </nav>
 
             {{-- Actions --}}
@@ -1134,11 +1134,11 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 7H4l1-7z"/></svg>
         Carrito
     </a>
-    <a href="{{ route('shop.home') }}">
+    <a href="{{ route('shop.nosotras') }}">
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         Nosotras
     </a>
-	    <a href="{{ route('shop.home') }}">
+	    <a href="{{ route('shop.contact') }}">
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18v12H3V6zm0 0l9 6l9-6" /></svg>
         Contacto
     </a>
@@ -1487,8 +1487,8 @@
                     <li><a href="{{ route('shop.home') }}">Inicio</a></li>
                     <li><a href="{{ route('shop.catalog') }}">Catálogo</a></li>
                     <li><a href="#ocasiones">Ocasiones</a></li>
-                    <li><a href="#nosotras">Nuestra historia</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="{{ route('shop.nosotras') }}">Nosotras</a></li>
+                    <li><a href="{{ route('shop.contact') }}">Contacto</a></li>
                 </ul>
             </div>
 
