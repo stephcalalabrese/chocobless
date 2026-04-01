@@ -26,7 +26,7 @@ class ShopController extends Controller
 
     public function catalog()
     {
-        $categories = Category::where('actif', 1)->orderBy('ordre')->get();
+        $categories = Category::where('actif', 1)->orderBy('ordre')->withCount(['products' => fn($q) => $q->where('actif', 1)])->get();
         $ocasiones  = Ocasion::actif()->withCount(['products' => fn($q) => $q->where('actif', 1)])->get();
         $products   = Product::with(['category', 'variants' => fn($q) => $q->where('actif', 1)])
             ->where('actif', 1)->orderBy('en_vedette', 'desc')->latest('cree_le')->paginate(12);
@@ -37,7 +37,7 @@ class ShopController extends Controller
     public function category(string $slug)
     {
         $category   = Category::where('slug', $slug)->where('actif', 1)->firstOrFail();
-        $categories = Category::where('actif', 1)->orderBy('ordre')->get();
+        $categories = Category::where('actif', 1)->orderBy('ordre')->withCount(['products' => fn($q) => $q->where('actif', 1)])->get();
         $ocasiones  = Ocasion::actif()->withCount(['products' => fn($q) => $q->where('actif', 1)])->get();
         $products   = Product::with(['category', 'variants' => fn($q) => $q->where('actif', 1)])
             ->where('actif', 1)->where('categorie_id', $category->id)
@@ -49,7 +49,7 @@ class ShopController extends Controller
     public function ocasion(string $slug)
     {
         $ocasion    = Ocasion::where('slug', $slug)->where('actif', 1)->firstOrFail();
-        $categories = Category::where('actif', 1)->orderBy('ordre')->get();
+        $categories = Category::where('actif', 1)->orderBy('ordre')->withCount(['products' => fn($q) => $q->where('actif', 1)])->get();
         $ocasiones  = Ocasion::actif()->withCount(['products' => fn($q) => $q->where('actif', 1)])->get();
         $products   = Product::with(['category', 'variants' => fn($q) => $q->where('actif', 1)])
             ->whereHas('ocasiones', fn($q) => $q->where('ocasiones.id', $ocasion->id))
