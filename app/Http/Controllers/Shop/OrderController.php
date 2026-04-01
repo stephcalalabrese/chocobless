@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    const WHATSAPP = '573117899152'; // Format international sans +
+    const WHATSAPP = '573117989152'; // Format international sans +
 
     public function checkout()
     {
