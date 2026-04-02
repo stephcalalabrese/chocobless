@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
-
 class OrderController extends Controller
 {
     public function index(Request $request)
@@ -18,16 +17,27 @@ class OrderController extends Controller
         $statuts = Order::STATUTS;
         return view('admin.orders.index', compact('orders','statuts'));
     }
+
     public function show(Order $order)
     {
         $order->load(['customer','items','address']);
         $statuts = Order::STATUTS;
         return view('admin.orders.show', compact('order','statuts'));
     }
+
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate(['statut'=>'required|in:'.implode(',',array_keys(Order::STATUTS))]);
         $order->update(['statut'=>$request->statut]);
         return back()->with('success','Statut mis à jour.');
+    }
+
+    public function destroy(Order $order)
+    {
+        $numero = $order->numero_commande;
+        $order->items()->delete();
+        $order->delete();
+        return redirect()->route('admin.orders.index')
+                         ->with('success', "Commande {$numero} supprimée définitivement.");
     }
 }

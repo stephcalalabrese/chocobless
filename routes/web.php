@@ -49,6 +49,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 'toggleFeatured'])->name('products.featured');
         Route::resource('categories', CategoryController::class)->except(['show']);
         Route::resource('orders', OrderController::class)->only(['index','show','update']);
+        Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
         Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
         Route::resource('customers', CustomerController::class)->only(['index','show','destroy']);
         Route::patch('customers/{customer}/toggle', [CustomerController::class, 
