@@ -17,3 +17,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+*.bak
+*.bak2
+resources/views/shop/old_*

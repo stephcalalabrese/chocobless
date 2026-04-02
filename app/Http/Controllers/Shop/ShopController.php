@@ -59,6 +59,11 @@ class ShopController extends Controller
         return view('shop.catalog', compact('categories', 'ocasiones', 'products', 'ocasion'));
     }
 
+    public function nosotras()
+    {
+        return view('shop.nosotras');
+    }
+
     public function product(string $slug)
     {
         $product = Product::with([

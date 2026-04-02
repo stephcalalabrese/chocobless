@@ -89,7 +89,7 @@
     </div>
   </div>
   <div class="footer">
-    ChocoBless · diana@choco-bless.com · 311 789 9152
+    ChocoBless · diana@choco-bless.com · 311 798 9152
   </div>
 </div>
 </body>
