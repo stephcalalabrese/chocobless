@@ -11,6 +11,15 @@
     .catalog-wrap { max-width:1180px; margin:0 auto; padding:48px 24px 80px; display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:start; }
     @media(max-width:768px){ .catalog-wrap{ grid-template-columns:1fr; gap:24px; } }
     .catalog-sidebar { position:sticky; top:90px; }
+    @media(max-width:768px){
+      .catalog-sidebar { position:relative; top:auto; }
+      .sidebar-mobile-toggle { display:flex; align-items:center; justify-content:space-between; background:#3d1c02; color:#e2c97e; padding:12px 16px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:none; width:100%; }
+      .sidebar-content { display:none; background:#fff; border:1px solid rgba(201,168,76,.2); border-radius:8px; padding:16px; margin-top:8px; }
+      .sidebar-content.open { display:block; }
+      .sidebar-label { margin-top:16px; }
+      .sidebar-label:first-child { margin-top:0; }
+    }
+    @media(min-width:769px){ .sidebar-mobile-toggle { display:none; } }
     .sidebar-label { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#c9a84c; margin-bottom:14px; display:block; }
     .sidebar-list { list-style:none; display:flex; flex-direction:column; gap:2px; }
     .sidebar-list a { display:flex; align-items:center; justify-content:space-between; padding:9px 14px; border-radius:6px; font-size:13px; color:rgba(61,28,2,.7); transition:all .25s; border:1px solid transparent; }
@@ -131,3 +140,22 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+function toggleSidebar() {
+    const content = document.getElementById('sidebar-content');
+    const arrow = document.getElementById('sidebar-arrow');
+    content.classList.toggle('open');
+    arrow.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+// Sur mobile, ouvrir automatiquement si un filtre est actif
+if (window.innerWidth <= 768) {
+    const hasActive = document.querySelector('.sidebar-content .active');
+    if (hasActive) {
+        document.getElementById('sidebar-content').classList.add('open');
+        document.getElementById('sidebar-arrow').style.transform = 'rotate(180deg)';
+    }
+}
+</script>
+@endpush
