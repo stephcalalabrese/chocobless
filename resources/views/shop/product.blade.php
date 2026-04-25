@@ -19,6 +19,7 @@
 
   /* Image column */
   .product-img-sticky { position:sticky; top:88px; }
+  @media(max-width:900px){ .product-img-sticky { position:static; top:auto; } }
   .product-main-img {
     aspect-ratio:1; border-radius:16px; overflow:hidden;
     background:#f5e8d8; border:1px solid rgba(201,168,76,.2);
@@ -103,6 +104,16 @@
   .product-desc-block { border-top:1px solid rgba(201,168,76,.2); padding-top:24px; margin-top:28px; }
   .product-desc-title { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(61,28,2,.4); margin-bottom:12px; }
   .product-desc-text { font-size:14px; color:rgba(61,28,2,.7); line-height:1.75; font-weight:300; }
+  .product-desc-text p { margin-bottom:14px; }
+  .product-desc-text p:last-child { margin-bottom:0; }
+  .product-desc-text strong { color:#3d1c02; font-weight:600; }
+  .product-desc-text em { font-style:italic; }
+  .product-desc-text u { text-decoration:underline; }
+  .product-desc-text ul { list-style:disc; padding-left:22px; margin-bottom:14px; }
+  .product-desc-text ol { list-style:decimal; padding-left:22px; margin-bottom:14px; }
+  .product-desc-text li { margin-bottom:6px; }
+  .product-desc-text a { color:#c9a84c; text-decoration:underline; }
+  .product-desc-text a:hover { color:#3d1c02; }
 
   /* Related */
   .related-section { max-width:1180px; margin:0 auto; padding:0 24px 80px; border-top:1px solid rgba(201,168,76,.15); padding-top:60px; }
@@ -238,7 +249,7 @@
       @if($product->description)
         <div class="product-desc-block">
           <p class="product-desc-title">Descripción</p>
-          <p class="product-desc-text">{{ $product->description }}</p>
+          <div class="product-desc-text">{!! $product->description !!}</div>
         </div>
       @endif
 
