@@ -82,7 +82,7 @@ class OrderController extends Controller
             $total = max(0, $sous_total - $remise);
 
             // Numéro de commande unique
-            $numero = 'CB-' . date('Y') . str_pad(Order::count() + 1, 4, '0', STR_PAD_LEFT);
+            $numero = 'CB-' . date('Y') . str_pad((Order::max('id') ?? 0) + 1, 4, '0', STR_PAD_LEFT);
 
             // Commande
             $order = Order::create([
@@ -129,6 +129,7 @@ try {
 
         } catch (\Exception $e) {
             DB::rollback();
+            \Log::error('Order failed: ' . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine());
             return back()->with('error', 'Hubo un error al procesar tu pedido. Intenta de nuevo.');
         }
     }
