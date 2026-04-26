@@ -123,6 +123,14 @@ try {
     \Log::error('Email notification failed: ' . $e->getMessage());
 }
 
+// Email de confirmation au client
+try {
+    \Mail::to($order->customer->email)
+        ->send(new \App\Mail\NotificacionPedido($order, 'en_attente'));
+} catch (\Exception $e) {
+    \Log::error('Email notification client failed: ' . $e->getMessage());
+}
+
 	    session()->forget('cart');
 
             return redirect()->route('order.confirmation', $numero);

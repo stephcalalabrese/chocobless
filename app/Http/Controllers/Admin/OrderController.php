@@ -29,6 +29,18 @@ class OrderController extends Controller
     {
         $request->validate(['statut'=>'required|in:'.implode(',',array_keys(Order::STATUTS))]);
         $order->update(['statut'=>$request->statut]);
+
+        // Envoyer notification au client
+        $notifyStatuts = ['confirmee', 'en_livraison', 'annulee'];
+        if (in_array($request->statut, $notifyStatuts) && $order->customer?->email) {
+            try {
+                $order->load(['items', 'customer', 'address']);
+                \Mail::to($order->customer->email)
+                    ->send(new \App\Mail\NotificacionPedido($order, $request->statut));
+            } catch (\Exception $e) {
+                \Log::error('Email status notification failed: ' . $e->getMessage());
+            }
+        }
         return back()->with('success','Statut mis à jour.');
     }
 
