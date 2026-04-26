@@ -186,16 +186,10 @@
     </a>
 
     <div class="nav-links">
-      <a href="{{ route('shop.home') }}">Inicio</a>
-      <a href="{{ route('shop.nosotras') }}">
-        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        Nosotras
-      </a>
+      <a href="{{ route('shop.home') }}#ocasiones">Ocasiones</a>
       <a href="{{ route('shop.catalog') }}">Catálogo</a>
+      <a href="{{ route('shop.nosotras') }}">Nosotras</a>
       <a href="{{ route('shop.contact') }}">Contacto</a>
-      @foreach(\App\Models\Category::where('actif',1)->orderBy('ordre')->take(4)->get() as $cat)
-        <a href="{{ route('shop.category', $cat->slug) }}">{{ $cat->nom }}</a>
-      @endforeach
     </div>
 
     <div class="nav-actions">
